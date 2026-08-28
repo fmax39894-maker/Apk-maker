@@ -2,36 +2,48 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Advanced HTML → APK Maker</title>
+<title>HTML → APK Maker</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#07101d;color:#eef4ff;font-family:system-ui,-apple-system,Segoe UI,sans-serif}
-main{max-width:1000px;margin:auto;padding:14px}.hero,.card{background:#101a2b;border:1px solid #2a3b57;border-radius:20px}.hero{padding:21px;display:flex;gap:15px;align-items:center}.hero .logo{font-size:48px}.hero h1{margin:0;font-size:clamp(25px,7vw,42px)}.hero p{margin:4px 0;color:#98a8be}.card{margin-top:13px;padding:17px}h2{margin:0 0 13px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}label{display:block;color:#cbd6e6;font-weight:650;margin-bottom:10px}input[type=text],input[type=number],select{width:100%;margin-top:6px;padding:12px;background:#091322;color:#fff;border:1px solid #384a65;border-radius:11px;font-size:16px}input[type=color]{width:100%;height:45px;margin-top:6px;background:#091322;border:1px solid #384a65;border-radius:10px}.drop{min-height:120px;border:2px dashed #40536f;border-radius:15px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;cursor:pointer;text-align:center;background:#0a1423}.drop input{display:none}.drop small,.muted{color:#91a0b5;font-weight:400}.checks{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.check{padding:11px;background:#0b1524;border:1px solid #2c3d58;border-radius:10px;font-weight:500}.actions{display:flex;gap:9px;margin-top:13px}.actions button:first-child{flex:1}button{padding:14px;border:0;border-radius:12px;background:#3d82f5;color:#fff;font-weight:800;font-size:16px;cursor:pointer}button.secondary{background:#273750}.progress{height:10px;background:#07101d;border-radius:99px;overflow:hidden;margin-top:13px}.bar{height:100%;width:0;background:#3d82f5;transition:width .3s}.status{white-space:pre-wrap;line-height:1.5;color:#b5c2d4}.success{padding:14px;background:#10251d;border:1px solid #2d6448;border-radius:12px}.download{display:none;margin-top:10px;background:#27a66a}.preview{width:100%;height:390px;border:1px solid #344661;border-radius:13px;background:#fff}.invalid{border-color:#b55b67!important}.help{font-size:12px;color:#8493a9}.spin{display:inline-block;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}@media(max-width:650px){.grid,.checks{grid-template-columns:1fr}.hero{padding:16px}}
+*{box-sizing:border-box}body{margin:0;background:#07101d;color:#eef4ff;font-family:system-ui,sans-serif}
+main{max-width:980px;margin:auto;padding:14px}.hero,.card{background:#101a2b;border:1px solid #2b3d59;border-radius:20px}
+.hero{padding:20px;display:flex;gap:14px;align-items:center}.logo{font-size:46px}.hero h1{margin:0;font-size:clamp(25px,7vw,40px)}.hero p{margin:5px 0;color:#9eacc0}
+.card{margin-top:13px;padding:17px}h2{margin:0 0 12px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
+label{display:block;font-weight:700;color:#cad5e5;margin-bottom:10px}input[type=text],input[type=number],select{width:100%;margin-top:6px;padding:12px;background:#091322;color:white;border:1px solid #3b4e6a;border-radius:11px;font-size:16px}
+input[type=color]{width:100%;height:44px;margin-top:6px;border:1px solid #3b4e6a;border-radius:10px;background:#091322}.drop{min-height:120px;border:2px dashed #405470;border-radius:15px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;text-align:center;background:#0a1423;cursor:pointer}.drop input{display:none}
+.muted,.help{color:#91a0b5;font-weight:400;font-size:13px;line-height:1.5}.checks{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.check{padding:11px;background:#0b1524;border:1px solid #2c3e59;border-radius:10px;font-weight:500}
+.actions{display:flex;gap:9px;margin-top:13px}button{border:0;border-radius:12px;padding:14px 16px;background:#3f82f5;color:#fff;font-weight:800;font-size:16px;cursor:pointer}.primary{flex:1}button:disabled{opacity:.55}button.secondary{background:#293a54}.barbox{height:10px;background:#07101d;border-radius:99px;margin-top:14px;overflow:hidden}.bar{height:100%;width:0;background:#3f82f5;transition:width .3s}.status{white-space:pre-wrap;line-height:1.5;color:#b8c5d7}.error{background:#28161a;border:1px solid #733743;border-radius:12px;padding:13px}.ok{background:#10261c;border:1px solid #2e6849;border-radius:12px;padding:13px}.download{display:none;margin-top:10px;background:#2ba86d}.preview{width:100%;height:380px;border:1px solid #344862;border-radius:13px;background:#fff}
+@media(max-width:650px){.grid,.checks{grid-template-columns:1fr}.hero{padding:16px}}
 </style>
 </head>
 <body><main>
-<header class="hero"><div class="logo">📦</div><div><h1>Advanced HTML → APK Maker</h1><p>Upload HTML, configure Android settings, and build a real debug APK on the server.</p></div></header>
+<header class="hero"><div class="logo">📦</div><div><h1>HTML → APK Maker</h1><p>Build a real Android debug APK with Android SDK + Gradle.</p></div></header>
 
 <section class="card"><h2>1. Website</h2>
-<label class="drop">📄 <strong>Choose index.html</strong><small>Your HTML is sent to the build server only when you press Build APK.</small><input id="html" type="file" accept=".html,text/html"></label>
-<p id="name" class="muted">No file selected.</p></section>
+<label class="drop">📄<strong>Select index.html</strong><small class="muted">The selected file is uploaded only when you press Build APK.</small>
+<input id="html" type="file" accept=".html,text/html"></label>
+<p id="fileName" class="muted">No file selected.</p></section>
 
 <section class="card"><h2>2. App details</h2><div class="grid">
-<label>App name<input id="appName" value="My HTML App"></label>
-<label>Package name<input id="pkg" value="com.example.myapp"><span class="help">You can use spaces/capital letters; the server automatically converts invalid input to a valid Android package.</span></label>
+<label>App name<input id="appName" value="My Science App"></label>
+<label>Package name<input id="pkg" value="com.example.myapp"><span class="help">Invalid characters are automatically fixed by the server.</span></label>
 <label>Version<input id="version" value="1.0.0"></label>
-<label>Version code<input id="versionCode" type="number" value="1" min="1"></label>
+<label>Version code<input id="versionCode" type="number" min="1" value="1"></label>
 <label>Orientation<select id="orientation"><option value="portrait">Portrait</option><option value="landscape">Landscape</option><option value="unspecified">Unspecified</option></select></label>
 <label>Minimum Android<select id="minSdk"><option value="23">Android 6+</option><option value="26">Android 8+</option><option value="28">Android 9+</option></select></label>
 </div></section>
 
-<section class="card"><h2>3. Icon & appearance</h2><div class="grid">
-<label>Background<input id="bg" type="color" value="#0b1020"></label><label>Status bar<input id="statusBar" type="color" value="#0b1020"></label><label>Navigation bar<input id="navBar" type="color" value="#000000"></label>
-<label>Icon (optional)<input id="icon" type="file" accept="image/png,image/jpeg,image/webp"></label>
+<section class="card"><h2>3. Appearance</h2><div class="grid">
+<label>WebView background<input id="bg" type="color" value="#0b1020"></label>
+<label>Status bar<input id="statusBar" type="color" value="#0b1020"></label>
+<label>Navigation bar<input id="navBar" type="color" value="#000000"></label>
 </div><div class="checks">
-<label class="check"><input id="dark" type="checkbox" checked> Dark system UI</label><label class="check"><input id="zoom" type="checkbox"> Pinch zoom</label><label class="check"><input id="back" type="checkbox" checked> Back navigation</label><label class="check"><input id="cleartext" type="checkbox"> Allow HTTP content</label>
+<label class="check"><input id="dark" type="checkbox" checked> Dark system UI</label>
+<label class="check"><input id="zoom" type="checkbox"> Pinch zoom</label>
+<label class="check"><input id="back" type="checkbox" checked> Back navigation</label>
+<label class="check"><input id="cleartext" type="checkbox"> Allow HTTP content</label>
 </div></section>
 
-<section class="card"><h2>4. Android permissions</h2><div class="checks">
+<section class="card"><h2>4. Permissions</h2><div class="checks">
 <label class="check"><input class="perm" value="INTERNET" type="checkbox" checked> 🌐 Internet</label>
 <label class="check"><input class="perm" value="CAMERA" type="checkbox"> 📷 Camera</label>
 <label class="check"><input class="perm" value="RECORD_AUDIO" type="checkbox"> 🎤 Microphone</label>
@@ -42,31 +54,53 @@ main{max-width:1000px;margin:auto;padding:14px}.hero,.card{background:#101a2b;bo
 <label class="check"><input class="perm" value="VIBRATE" type="checkbox"> 📳 Vibration</label>
 </div></section>
 
-<section class="card"><h2>5. Build</h2>
-<p class="muted">This version actually runs Gradle + Android SDK on the backend and returns an <b>.apk</b>, rather than only generating a project ZIP.</p>
-<div class="actions"><button id="build">🚀 Build APK</button><button class="secondary" id="previewBtn">👀 Preview</button></div>
-<div class="progress"><div class="bar" id="bar"></div></div><p class="status" id="status"></p>
-<div class="success" id="success" style="display:none"><b>✅ APK ready!</b><br><span id="successText"></span><button class="download" id="download">⬇️ Download APK</button></div>
+<section class="card"><h2>5. Build APK</h2>
+<p class="muted">This version does not fake an APK or only create a ZIP. The backend runs Gradle and returns the generated <b>.apk</b>.</p>
+<div class="actions"><button id="build" class="primary">🚀 Build APK</button><button id="previewBtn" class="secondary">👀 Preview</button></div>
+<div class="barbox"><div id="bar" class="bar"></div></div>
+<p id="status" class="status">Ready.</p>
+<div id="result"></div>
 </section>
 
-<section class="card"><h2>Website preview</h2><iframe id="preview" class="preview" title="HTML preview"></iframe></section>
-<footer class="muted">For testing/education. Debug APKs are unsigned for Play Store release.</footer>
+<section class="card"><h2>Website preview</h2><iframe id="preview" class="preview" title="Preview"></iframe></section>
 </main>
 <script>
-const $=id=>document.getElementById(id);let htmlFile=null;
-$("html").onchange=e=>{htmlFile=e.target.files[0]||null;if(htmlFile){$("name").textContent=htmlFile.name;$("preview").src=URL.createObjectURL(htmlFile)}};
-$("previewBtn").onclick=()=>{if(!htmlFile)return alert("Choose index.html first.");$("preview").src=URL.createObjectURL(htmlFile)};
-function perms(){return [...document.querySelectorAll(".perm:checked")].map(x=>x.value)}
-$("pkg").addEventListener("input",()=>{$("pkg").classList.remove("invalid")});
+const $=id=>document.getElementById(id);
+let file=null;
+$("html").onchange=e=>{file=e.target.files[0]||null;if(file){$("fileName").textContent=file.name;$("preview").src=URL.createObjectURL(file)}};
+$("previewBtn").onclick=()=>{if(!file)return alert("Select index.html first.");$("preview").src=URL.createObjectURL(file)};
+function permissions(){return [...document.querySelectorAll(".perm:checked")].map(x=>x.value)}
+function status(t){$("status").textContent=t}
 $("build").onclick=async()=>{
- if(!htmlFile){$("status").textContent="❌ Choose index.html first.";return}
- const fd=new FormData();fd.append("html",htmlFile);fd.append("appName",$("appName").value);fd.append("packageName",$("pkg").value);fd.append("version",$("version").value);fd.append("versionCode",$("versionCode").value);fd.append("orientation",$("orientation").value);fd.append("minSdk",$("minSdk").value);fd.append("bg",$("bg").value);fd.append("statusBar",$("statusBar").value);fd.append("navBar",$("navBar").value);fd.append("dark",$("dark").checked);fd.append("zoom",$("zoom").checked);fd.append("back",$("back").checked);fd.append("cleartext",$("cleartext").checked);fd.append("permissions",JSON.stringify(perms()));
- $("build").disabled=true;$("success").style.display="none";$("bar").style.width="8%";$("status").innerHTML='<span class="spin">⏳</span> Uploading HTML and starting Android build…';
+ if(!file){status("❌ Select index.html first.");return}
+ $("build").disabled=true;$("result").innerHTML="";$("bar").style.width="7%";status("Uploading index.html…");
+ const fd=new FormData();
+ fd.append("html",file);fd.append("appName",$("appName").value);fd.append("packageName",$("pkg").value);
+ fd.append("version",$("version").value);fd.append("versionCode",$("versionCode").value);fd.append("orientation",$("orientation").value);
+ fd.append("minSdk",$("minSdk").value);fd.append("bg",$("bg").value);fd.append("statusBar",$("statusBar").value);fd.append("navBar",$("navBar").value);
+ fd.append("dark",$("dark").checked);fd.append("zoom",$("zoom").checked);fd.append("back",$("back").checked);fd.append("cleartext",$("cleartext").checked);
+ fd.append("permissions",JSON.stringify(permissions()));
  try{
-  const r=await fetch("/build",{method:"POST",body:fd});$("bar").style.width="75%";const data=await r.json();
-  if(!r.ok)throw new Error((data.error||"Build failed")+(data.details?"\n\n"+data.details:""));
-  $("bar").style.width="100%";$("status").textContent="Build completed.";$("success").style.display="block";$("successText").textContent=data.appName+" • package: "+data.packageName;$("download").style.display="block";$("download").onclick=()=>location.href=data.download;
- }catch(e){$("bar").style.width="0";$("status").textContent="❌ "+e.message}
- finally{$("build").disabled=false}
+   $("bar").style.width="18%";status("Server received the file. Preparing Android project…");
+   const response=await fetch("/build",{method:"POST",body:fd});
+   $("bar").style.width="70%";
+   const raw=await response.text();
+   let data;try{data=JSON.parse(raw)}catch{throw new Error("Server returned a non-JSON response (HTTP "+response.status+").\\n"+raw.slice(0,1200))}
+   if(!response.ok||!data.ok){
+     $("bar").style.width="0";
+     $("result").innerHTML='<div class="error"><b>❌ Build failed</b><br>'+escapeHtml(data.error||"Unknown error")+'<pre>'+escapeHtml(data.details||"No server details.")+'</pre><span class="help">'+escapeHtml(data.hint||"")+'</span></div>';
+     status("The backend returned an error. Open Render → Logs for the full Gradle log.");
+     return;
+   }
+   $("bar").style.width="100%";status("✅ APK built successfully in "+data.seconds+" seconds.");
+   $("result").innerHTML='<div class="ok"><b>✅ APK ready!</b><br>'+escapeHtml(data.appName)+'<br><span class="help">Package: '+escapeHtml(data.packageName)+'</span><br><button class="download" id="download">⬇️ Download APK</button></div>';
+   $("download").style.display="inline-block";$("download").onclick=()=>location.href=data.download;
+ }catch(e){
+   $("bar").style.width="0";
+   $("result").innerHTML='<div class="error"><b>❌ Connection/build request failed</b><br>'+escapeHtml(e.message)+'<br><br><span class="help">If this says “Failed to fetch”, open <b>/health</b> on your Render site. If /health works, open Render Logs and check whether the service crashed during Gradle.</span></div>';
+   status("Could not complete the request.");
+ }finally{$("build").disabled=false}
 };
-</script></body></html>
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+</script>
+</body></html>
