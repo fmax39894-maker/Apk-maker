@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Advanced HTML → APK Maker</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#07101d;color:#eef4ff;font-family:system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1000px;margin:auto;padding:14px}.hero,.card{background:#101a2b;border:1px solid #2a3b57;border-radius:20px}.hero{padding:21px;display:flex;gap:15px;align-items:center}.hero .logo{font-size:48px}.hero h1{margin:0;font-size:clamp(25px,7vw,42px)}.hero p{margin:4px 0;color:#98a8be}.card{margin-top:13px;padding:17px}h2{margin:0 0 13px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}label{display:block;color:#cbd6e6;font-weight:650;margin-bottom:10px}input[type=text],input[type=number],select{width:100%;margin-top:6px;padding:12px;background:#091322;color:#fff;border:1px solid #384a65;border-radius:11px;font-size:16px}input[type=color]{width:100%;height:45px;margin-top:6px;background:#091322;border:1px solid #384a65;border-radius:10px}.drop{min-height:120px;border:2px dashed #40536f;border-radius:15px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;cursor:pointer;text-align:center;background:#0a1423}.drop input{display:none}.drop small,.muted{color:#91a0b5;font-weight:400}.checks{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.check{padding:11px;background:#0b1524;border:1px solid #2c3d58;border-radius:10px;font-weight:500}.actions{display:flex;gap:9px;margin-top:13px}.actions button:first-child{flex:1}button{padding:14px;border:0;border-radius:12px;background:#3d82f5;color:#fff;font-weight:800;font-size:16px;cursor:pointer}button.secondary{background:#273750}.progress{height:10px;background:#07101d;border-radius:99px;overflow:hidden;margin-top:13px}.bar{height:100%;width:0;background:#3d82f5;transition:width .3s}.status{white-space:pre-wrap;line-height:1.5;color:#b5c2d4}.success{padding:14px;background:#10251d;border:1px solid #2d6448;border-radius:12px}.download{display:none;margin-top:10px;background:#27a66a}.preview{width:100%;height:390px;border:1px solid #344661;border-radius:13px;background:#fff}.invalid{border-color:#b55b67!important}.help{font-size:12px;color:#8493a9}.spin{display:inline-block;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}@media(max-width:650px){.grid,.checks{grid-template-columns:1fr}.hero{padding:16px}}
+</style>
+</head>
+<body><main>
+<header class="hero"><div class="logo">📦</div><div><h1>Advanced HTML → APK Maker</h1><p>Upload HTML, configure Android settings, and build a real debug APK on the server.</p></div></header>
+
+<section class="card"><h2>1. Website</h2>
+<label class="drop">📄 <strong>Choose index.html</strong><small>Your HTML is sent to the build server only when you press Build APK.</small><input id="html" type="file" accept=".html,text/html"></label>
+<p id="name" class="muted">No file selected.</p></section>
+
+<section class="card"><h2>2. App details</h2><div class="grid">
+<label>App name<input id="appName" value="My HTML App"></label>
+<label>Package name<input id="pkg" value="com.example.myapp"><span class="help">You can use spaces/capital letters; the server automatically converts invalid input to a valid Android package.</span></label>
+<label>Version<input id="version" value="1.0.0"></label>
+<label>Version code<input id="versionCode" type="number" value="1" min="1"></label>
+<label>Orientation<select id="orientation"><option value="portrait">Portrait</option><option value="landscape">Landscape</option><option value="unspecified">Unspecified</option></select></label>
+<label>Minimum Android<select id="minSdk"><option value="23">Android 6+</option><option value="26">Android 8+</option><option value="28">Android 9+</option></select></label>
+</div></section>
+
+<section class="card"><h2>3. Icon & appearance</h2><div class="grid">
+<label>Background<input id="bg" type="color" value="#0b1020"></label><label>Status bar<input id="statusBar" type="color" value="#0b1020"></label><label>Navigation bar<input id="navBar" type="color" value="#000000"></label>
+<label>Icon (optional)<input id="icon" type="file" accept="image/png,image/jpeg,image/webp"></label>
+</div><div class="checks">
+<label class="check"><input id="dark" type="checkbox" checked> Dark system UI</label><label class="check"><input id="zoom" type="checkbox"> Pinch zoom</label><label class="check"><input id="back" type="checkbox" checked> Back navigation</label><label class="check"><input id="cleartext" type="checkbox"> Allow HTTP content</label>
+</div></section>
+
+<section class="card"><h2>4. Android permissions</h2><div class="checks">
+<label class="check"><input class="perm" value="INTERNET" type="checkbox" checked> 🌐 Internet</label>
+<label class="check"><input class="perm" value="CAMERA" type="checkbox"> 📷 Camera</label>
+<label class="check"><input class="perm" value="RECORD_AUDIO" type="checkbox"> 🎤 Microphone</label>
+<label class="check"><input class="perm" value="ACCESS_FINE_LOCATION" type="checkbox"> 📍 Precise location</label>
+<label class="check"><input class="perm" value="ACCESS_COARSE_LOCATION" type="checkbox"> 📍 Approximate location</label>
+<label class="check"><input class="perm" value="READ_MEDIA_IMAGES" type="checkbox"> 🖼️ Photos</label>
+<label class="check"><input class="perm" value="POST_NOTIFICATIONS" type="checkbox"> 🔔 Notifications</label>
+<label class="check"><input class="perm" value="VIBRATE" type="checkbox"> 📳 Vibration</label>
+</div></section>
+
+<section class="card"><h2>5. Build</h2>
+<p class="muted">This version actually runs Gradle + Android SDK on the backend and returns an <b>.apk</b>, rather than only generating a project ZIP.</p>
+<div class="actions"><button id="build">🚀 Build APK</button><button class="secondary" id="previewBtn">👀 Preview</button></div>
+<div class="progress"><div class="bar" id="bar"></div></div><p class="status" id="status"></p>
+<div class="success" id="success" style="display:none"><b>✅ APK ready!</b><br><span id="successText"></span><button class="download" id="download">⬇️ Download APK</button></div>
+</section>
+
+<section class="card"><h2>Website preview</h2><iframe id="preview" class="preview" title="HTML preview"></iframe></section>
+<footer class="muted">For testing/education. Debug APKs are unsigned for Play Store release.</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);let htmlFile=null;
+$("html").onchange=e=>{htmlFile=e.target.files[0]||null;if(htmlFile){$("name").textContent=htmlFile.name;$("preview").src=URL.createObjectURL(htmlFile)}};
+$("previewBtn").onclick=()=>{if(!htmlFile)return alert("Choose index.html first.");$("preview").src=URL.createObjectURL(htmlFile)};
+function perms(){return [...document.querySelectorAll(".perm:checked")].map(x=>x.value)}
+$("pkg").addEventListener("input",()=>{$("pkg").classList.remove("invalid")});
+$("build").onclick=async()=>{
+ if(!htmlFile){$("status").textContent="❌ Choose index.html first.";return}
+ const fd=new FormData();fd.append("html",htmlFile);fd.append("appName",$("appName").value);fd.append("packageName",$("pkg").value);fd.append("version",$("version").value);fd.append("versionCode",$("versionCode").value);fd.append("orientation",$("orientation").value);fd.append("minSdk",$("minSdk").value);fd.append("bg",$("bg").value);fd.append("statusBar",$("statusBar").value);fd.append("navBar",$("navBar").value);fd.append("dark",$("dark").checked);fd.append("zoom",$("zoom").checked);fd.append("back",$("back").checked);fd.append("cleartext",$("cleartext").checked);fd.append("permissions",JSON.stringify(perms()));
+ $("build").disabled=true;$("success").style.display="none";$("bar").style.width="8%";$("status").innerHTML='<span class="spin">⏳</span> Uploading HTML and starting Android build…';
+ try{
+  const r=await fetch("/build",{method:"POST",body:fd});$("bar").style.width="75%";const data=await r.json();
+  if(!r.ok)throw new Error((data.error||"Build failed")+(data.details?"\n\n"+data.details:""));
+  $("bar").style.width="100%";$("status").textContent="Build completed.";$("success").style.display="block";$("successText").textContent=data.appName+" • package: "+data.packageName;$("download").style.display="block";$("download").onclick=()=>location.href=data.download;
+ }catch(e){$("bar").style.width="0";$("status").textContent="❌ "+e.message}
+ finally{$("build").disabled=false}
+};
+</script></body></html>
