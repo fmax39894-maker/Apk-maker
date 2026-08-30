@@ -6,7 +6,7 @@ ENV GRADLE_BIN=/opt/gradle/bin/gradle
 ENV PATH=/opt/android-sdk/cmdline-tools/latest/bin:/opt/android-sdk/platform-tools:/opt/gradle/bin:$PATH
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    openjdk-17-jdk wget unzip curl ca-certificates nodejs npm git \
+    openjdk-17-jdk wget unzip zip curl ca-certificates nodejs npm git \
     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p "$ANDROID_HOME/cmdline-tools" \
