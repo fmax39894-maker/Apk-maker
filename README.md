@@ -1,14 +1,13 @@
-# HTML APK Studio v6
+# HTML APK Studio v7
 
-Multi-page HTML-to-APK builder for Render or another Linux server with Docker.
+A multi-page HTML-to-Android APK builder.
 
-Pages:
-1. Code
-2. Icon
-3. Permissions
-4. Colours & settings
-5. Build
+## Pages
+1. Code — paste HTML or import an HTML file; app name, package, version and version code are auto-normalized.
+2. Icon — default heart icon on white; import PNG/JPG/WEBP.
+3. Permissions — choose Android permissions.
+4. Colours — white defaults plus orientation and WebView options.
+5. Build — direct javac → D8 → AAPT2 → zipalign → apksigner pipeline with an isolated scrollable live log.
 
-The server uses Android SDK command-line tools directly (javac + D8 + AAPT2 + zipalign + apksigner) instead of invoking Gradle for the APK build.
-
-Important: the generated AndroidManifest.xml includes the required `package` attribute, and the build pipeline passes a JAR to D8.
+## Deploy
+Run `npm install` and `npm start`, or deploy with the included Dockerfile. The container installs Android SDK Platform 35 and Build Tools 35.0.0.

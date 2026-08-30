@@ -1,1 +1,1 @@
-{"name":"html-apk-studio-multipage","version":"6.0.0","private":true,"scripts":{"start":"node server.js"},"dependencies":{"express":"^4.21.2","multer":"^1.4.5-lts.1"}}
+{"name":"html-apk-studio","version":"7.0.0","private":true,"scripts":{"start":"node server.js"},"dependencies":{"express":"^4.21.2","multer":"^1.4.5-lts.1"}}
