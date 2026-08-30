@@ -1,7 +1,16 @@
-# HTML APK Studio Pro
+# HTML APK Studio Pro V4
 
-Deploy the whole folder as a Render **Docker Web Service**. Use port 10000 and `/health` as health check. Do not add a custom start command.
+## Render
+Deploy as a Docker Web Service.
 
-The app has two source modes: Paste code and Import HTML. Builds run as background jobs, so the browser no longer waits on one long request. The UI polls the job and displays Gradle logs/errors. A successful build returns a real debug APK.
+- Dockerfile: included
+- Port: 10000
+- Health endpoint: /health
+- Start command: not required
 
-Open `/health` after deployment. It must return JSON with `"ok":true`.
+The home page has two choices: Paste Code and Import HTML File.
+App creation opens on `/create` as a separate page and supports an app icon upload.
+
+The Docker image pre-warms the Android Gradle Plugin cache during image build. Runtime builds use a background job, so the browser does not wait on one long HTTP request.
+
+Open `/health` after deployment before testing APK builds.
