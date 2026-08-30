@@ -7,3 +7,7 @@
 5. Build — background Gradle job, live logs, APK download
 
 Deploy as a Render Docker Web Service. Test `/health` after deployment.
+
+
+## Fix in v5.0.1
+Default icon is read from public/default-icon.png; no undefined png() dependency.
